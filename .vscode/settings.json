@@ -1,0 +1,41 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
+  },
+  "tslint.validate": [
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": false
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/.expo": true,
+    "**/.expo-shared": true,
+    "**/node_modules": true,
+    "**/yarn.lock": true
+  }
+}
