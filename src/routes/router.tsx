@@ -1,16 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import logo from "../assets/images/logo.png";
-import { Logo } from "../components/atoms/Logo";
-import { Navigator } from "./Navigator";
+import { Header } from "../components/organisms/Header";
+import { HORIZONTAL_NAVIGATION_MENU } from "../constants/menu";
 import { Pages } from "./Switch";
 
 export default function App() {
   return (
     <Router>
-      <Navigator />
-      <Logo imageSource={logo} />
-      <hr />
+      <Header items={HORIZONTAL_NAVIGATION_MENU} logo={logo} />
       <Pages />
     </Router>
   );
