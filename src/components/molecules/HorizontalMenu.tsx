@@ -1,4 +1,5 @@
 import React from "react";
+import "../../assets/scss/molecules/HorizontalMenu.scss";
 import { MenuItem } from "../atoms/MenuItem";
 
 export const HorizontalMenu = ({ items }: { items: MenuItem[] }) => {
