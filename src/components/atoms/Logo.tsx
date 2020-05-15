@@ -2,17 +2,17 @@ import React from "react";
 
 export const Logo = ({
   imageSource,
-  classname,
+  className,
   description,
 }: {
   imageSource: string;
-  classname?: any;
+  className?: string;
   description?: string;
 }) => {
   return (
     <img
+      className={className}
       src={imageSource}
-      className={{ ...classname }}
       alt={description ?? "Application logo"}
     />
   );

@@ -6,5 +6,7 @@ export const HorizontalMenu = ({ items }: { items: MenuItem[] }) => {
     <MenuItem key={index} path={item.path} name={item.name}></MenuItem>
   ));
 
-  return <nav className="container-menu">{horizontalMenuItems}</nav>;
+  return (
+    <nav className="horizontal-menu-items-container">{horizontalMenuItems}</nav>
+  );
 };

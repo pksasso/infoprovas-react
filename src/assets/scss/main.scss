@@ -1,11 +1,51 @@
-.container-menu {
-  padding: 0.75em;
+* {
+  box-sizing: border-box;
 }
 
-.item-menu {
-  padding: 1em;
+body,
+html {
+  margin: 0;
+  padding: 0;
 }
 
-.item-menu:visited {
-  color: blue;
+#root {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.horizontal-menu {
+  display: flex;
+  flex: 1;
+  flex-flow: column nowrap;
+  justify-items: center;
+
+  .horizontal-menu-items-container {
+    flex: 1;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    padding: 0.75em;
+
+    .item-menu {
+      padding: 1em;
+      flex: 1;
+    }
+
+    &:visited {
+      color: blue;
+    }
+  }
+  .horizontal-menu-logo {
+    width: 400px;
+    align-self: center;
+  }
+}
+
+.page-content {
+  display: flex;
+  min-height: 100vh;
+  flex: 1;
+  padding: 1.75em;
+  flex-flow: row wrap;
 }
