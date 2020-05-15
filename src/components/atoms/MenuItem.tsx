@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../../assets/scss/atoms/MenuItem.scss";
 
 export interface MenuItem {
   path: string;

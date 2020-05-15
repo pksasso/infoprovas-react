@@ -1,0 +1,15 @@
+@import "../variables";
+
+.item-menu{
+  padding: 0.4em;
+  border-radius: 20px;
+  color: white;
+  font-family: $roboto;
+  font-size: 18px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $primary-dark-color;
+  }
+}
