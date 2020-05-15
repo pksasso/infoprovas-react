@@ -1,0 +1,35 @@
+@import "../variables";
+
+.panel {
+  flex: 1;
+  font-family: $roboto;
+  margin: 0.75em;
+  flex-basis: calc((100% - 0.75em) / 4);
+  box-shadow: $basic-shadow;
+  border-radius: 6px;
+  height: min-content;
+
+  .panel-header {
+    padding: 1px;
+    background-color: $primary-color;
+    color: #fff;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
+  .panel-body {
+    padding: 0.75em;
+    background-color: #ffffff;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    height: max-content;
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      list-style-type: none;
+      line-height: 1.75em;
+      color: $dark-grey;
+    }
+  }
+}

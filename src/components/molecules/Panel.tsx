@@ -1,4 +1,5 @@
 import React from "react";
+import "../../assets/scss/molecules/Panel.scss";
 
 export const Panel = ({
   title,
