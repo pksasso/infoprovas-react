@@ -1,3 +1,4 @@
+@import "./variables";
 * {
   box-sizing: border-box;
 }
@@ -12,6 +13,7 @@ html {
   display: flex;
   flex: 1;
   flex-direction: column;
+  background-color: $background;
 }
 
 .horizontal-menu {
@@ -43,21 +45,33 @@ html {
 }
 
 .panel {
-  display: flex;
   flex: 1;
-  min-height: 1em;
+  font-family: $roboto;
+  margin: 0.75em;
+  flex-basis: calc((100% - 0.75em) / 4);
+  box-shadow: $basic-shadow;
+  min-height: 200px;
   height: auto;
-  flex-flow: column wrap;
-  margin: 1em;
-  flex-basis: 20%;
 
   .panel-header {
     padding: 0.75em;
-    background-color: red;
+    background-color: $primary-color;
+    color: #fff;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
   }
   .panel-body {
     padding: 0.75em;
-    background-color: green;
+    background-color: #ffffff;
+    height: auto;
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      list-style-type: none;
+      line-height: 1.75em;
+    }
   }
 }
 
