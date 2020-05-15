@@ -10,9 +10,7 @@ interface HeaderProps {
 export const Header = ({ logo, items }: HeaderProps) => {
   return (
     <div className="horizontal-menu">
-      <div className="horizontal-menu-items-container">
-        <HorizontalMenu items={items} />
-      </div>
+      <HorizontalMenu items={items} />
       <Logo className="horizontal-menu-logo" imageSource={logo} />
     </div>
   );
