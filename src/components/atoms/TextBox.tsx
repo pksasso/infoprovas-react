@@ -1,4 +1,5 @@
 import React from "react";
+import "../../assets/scss/atoms/TextBox.scss";
 
 export const TextBox = ({
   name,
@@ -17,6 +18,7 @@ export const TextBox = ({
     <label>
       {name}
       <input
+        className="input-text"
         name={name}
         value={value}
         type="text"

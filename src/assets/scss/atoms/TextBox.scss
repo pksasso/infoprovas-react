@@ -1,0 +1,16 @@
+@import "../variables";
+
+.input-text {
+  background-color: $form-color;
+  border: none;
+  font-family: $roboto;
+  font-size: 16px;
+  padding: 0.5em;
+  width: 100%;
+}
+
+label {
+  color: $dark-grey;
+  font-family: $roboto;
+  font-size: 16px;
+}
