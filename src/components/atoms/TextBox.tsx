@@ -1,5 +1,4 @@
 import React from "react";
-import "../../assets/scss/atoms/TextBox.scss";
 
 export const TextBox = ({
   name,

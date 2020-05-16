@@ -7,13 +7,19 @@ export const TemplatePage = ({ title }: { title: string }) => {
 
   for (let index = 0; index < 8; index++) {
     items.push(
-      <Panel
-        key={index}
-        title={`${title}_${index + 1}`}
-        content={<List data={["Ola", "Mundo"]} />}
-      />
+      <div className="column is-4">
+        <Panel
+          key={index}
+          title={`${title}_${index + 1}`}
+          content={<List data={["Ola", "Mundo"]} />}
+        />
+      </div>
     );
   }
 
-  return <div className="page-content">{items}</div>;
+  return (
+    <div className="container is-fluid">
+      <div className="columns is-multiline is-centered">{items}</div>
+    </div>
+  );
 };

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../assets/scss/atoms/MenuItem.scss";
 
 export interface MenuItem {
   path: string;
@@ -9,7 +8,7 @@ export interface MenuItem {
 
 export const MenuItem = ({ path, name }: MenuItem) => {
   return (
-    <Link className="item-menu" to={path}>
+    <Link className="navbar-item" to={path}>
       {name}
     </Link>
   );

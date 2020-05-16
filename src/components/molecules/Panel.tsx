@@ -1,5 +1,4 @@
 import React from "react";
-import "../../assets/scss/molecules/Panel.scss";
 
 export const Panel = ({
   title,
@@ -10,10 +9,10 @@ export const Panel = ({
 }) => {
   return (
     <div className="panel">
-      <header className="panel-header">
+      <header className="panel-heading has-background-primary has-text-white-ter">
         <p>{title}</p>
       </header>
-      <section className="panel-body">{content}</section>
+      <section className="panel-block">{content}</section>
     </div>
   );
 };
