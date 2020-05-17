@@ -10,10 +10,8 @@ export const Logo = ({
   description?: string;
 }) => {
   return (
-    <img
-      className={className}
-      src={imageSource}
-      alt={description ?? "Application logo"}
-    />
+    <figure className={className}>
+      <img src={imageSource} alt={description ?? "Application logo"} />
+    </figure>
   );
 };

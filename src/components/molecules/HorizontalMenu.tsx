@@ -6,5 +6,9 @@ export const HorizontalMenu = ({ items }: { items: MenuItem[] }) => {
     <MenuItem key={index} path={item.path} name={item.name}></MenuItem>
   ));
 
-  return <nav className="navbar">{horizontalMenuItems}</nav>;
+  return (
+    <nav className="navbar" style={{ justifyContent: "center" }}>
+      {horizontalMenuItems}
+    </nav>
+  );
 };
