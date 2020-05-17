@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SendButton } from "../atoms/SendButton";
+import { ActionButton } from "../atoms/ActionButton";
 import { TextBox } from "../atoms/TextBox";
 
 export const ContactForm = () => {
@@ -8,8 +8,8 @@ export const ContactForm = () => {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
-  const sendEmail = (event: any) => {
-    event.preventDefault();
+  const sendEmail = (e: React.FormEvent<EventTarget>): void => {
+    e.preventDefault();
     console.log(name);
     console.log(email);
     console.log(subject);
@@ -22,7 +22,7 @@ export const ContactForm = () => {
       <TextBox name="Email" value={email} setText={setEmail} />
       <TextBox name="Assunto" value={subject} setText={setSubject} />
       <TextBox name="Mensagem" value={message} setText={setMessage} />
-      <SendButton />
+      <ActionButton title="Enviar" onClick={sendEmail} />
     </form>
   );
 };
