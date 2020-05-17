@@ -7,9 +7,8 @@ export const TemplatePage = ({ title }: { title: string }) => {
 
   for (let index = 0; index < 8; index++) {
     items.push(
-      <div className="column is-4">
+      <div key={index} className="column is-4">
         <Panel
-          key={index}
           title={`${title}_${index + 1}`}
           content={<List data={["Ola", "Mundo"]} />}
         />

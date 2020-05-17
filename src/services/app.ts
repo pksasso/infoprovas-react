@@ -1,7 +1,9 @@
 import API from "./API";
 
-export const InfoProvasService = {
+const InfoProvasService = {
   listCourses() {
     return API().get("/api/courses");
   },
 };
+
+export default InfoProvasService;
