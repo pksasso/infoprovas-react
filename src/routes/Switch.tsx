@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { ContactPage } from "../components/pages/ContactPage";
+import { Contact } from "../components/pages/Contact";
 import { DisciplinesPage } from "../components/pages/Disciplines";
 import { TemplatePage } from "../components/templates/Template";
 
@@ -17,7 +17,7 @@ export const Pages = () => {
         <TemplatePage title="Ajuda" />
       </Route>
       <Route path="/contato">
-        <ContactPage />
+        <Contact />
       </Route>
     </Switch>
   );
