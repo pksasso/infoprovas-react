@@ -10,5 +10,5 @@ const API = () => {
     },
   });
 };
-
-export default API;
+const infoProvasAPI = API();
+export default infoProvasAPI;
