@@ -13,10 +13,14 @@ export const DisciplinesTemplate = ({
   disciplines,
 }: {
   course?: number;
-  disciplines?: Disciplines[];
+  disciplines: Disciplines[];
 }) => {
   const panels: JSX.Element[] = [];
-  const disciplinesPerPeriod = _.groupBy(disciplines, "semester");
+
+  const elective = disciplines.filter((item) => item.semester === 0);
+  const mandatory = disciplines.filter((item) => item.semester !== 0);
+
+  const disciplinesPerPeriod = _.groupBy(mandatory, "semester");
 
   _.forEach(disciplinesPerPeriod, (value, key) => {
     const links = value.map((item, index) => {
@@ -32,6 +36,20 @@ export const DisciplinesTemplate = ({
       </div>
     );
   });
+
+  const electivesLink = elective?.map((item) => {
+    return (
+      <Link key={item.code} to={createLink(item.id)}>
+        {item.name}
+      </Link>
+    );
+  });
+
+  panels.push(
+    <div className="column is-4">
+      <Panel title={`Eletivas`} content={<List data={electivesLink} />} />
+    </div>
+  );
 
   return (
     <div className="container is-fluid">
