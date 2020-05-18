@@ -23,7 +23,8 @@ export const DisciplinesTemplate = ({
   const disciplinesPerPeriod = _.groupBy(mandatory, "semester");
 
   _.forEach(disciplinesPerPeriod, (value, key) => {
-    const links = value.map((item, index) => {
+    const ordered = _.sortBy(value, ["name"], ["asc"]);
+    const links = ordered.map((item) => {
       return (
         <Link key={item.code} to={createLink(item.id)}>
           {item.name}
@@ -37,7 +38,8 @@ export const DisciplinesTemplate = ({
     );
   });
 
-  const electivesLink = elective?.map((item) => {
+  const orderElectives = _.sortBy(elective, ["name"], ["asc"]);
+  const electivesLink = orderElectives?.map((item) => {
     return (
       <Link key={item.code} to={createLink(item.id)}>
         {item.name}
