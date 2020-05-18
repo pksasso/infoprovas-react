@@ -32,7 +32,7 @@ export const DisciplinesTemplate = ({
       );
     });
     panels.push(
-      <div className="column is-3" key={key}>
+      <div className="column is-4" key={key}>
         <Panel title={`${key}º Período`} content={<List data={links} />} />
       </div>
     );
@@ -48,7 +48,7 @@ export const DisciplinesTemplate = ({
   });
 
   panels.push(
-    <div className="column is-4">
+    <div className="column">
       <Panel title={`Eletivas`} content={<List data={electivesLink} />} />
     </div>
   );
