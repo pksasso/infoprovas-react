@@ -1,1 +1,29 @@
+@import "./variables";
+
+//colors
+$primary : $primary-color;
+$dark: $dark-grey;
+$body-background-color: $background;
+
+//fonts
+$family-primary: $roboto;
+$family-secundary: $roboto-condensed;
+
+$navbar-background-color: $primary;
+$navbar-item-color: white;
+$navbar-item-hover-background-color: $primary-dark-color;
+$navbar-item-hover-color: white;
+
+$panel-shadow: $basic-shadow;
+
+$panel-heading-padding: 0.5rem 0.75rem;
+$panel-heading-radius: 6px;
+$panel-heading-weight: 400;
+$panel-heading-size: 1.1rem;
+
+$panel-block-active-border-left-color: $dark-grey;
+
+$link: $dark-grey;
+$link-hover: black;
+
 @import "bulma/bulma";
