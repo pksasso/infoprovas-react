@@ -80,12 +80,13 @@ export const DisciplinesPage = ({ courseId = 1 }: { courseId?: number }) => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const listSubjectsOfCourse = async () => {
-      const response = await InfoProvasService.listSubjects({ id: courseId });
+    const getSubjects = async () => {
+      const { fetchSubjects } = InfoProvasService;
+      const response = await fetchSubjects({ courseId });
       setItems(response.data);
     };
 
-    listSubjectsOfCourse();
+    getSubjects();
   }, [courseId]);
 
   return (
