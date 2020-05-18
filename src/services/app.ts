@@ -1,8 +1,8 @@
 import API from "./API";
 
 const InfoProvasService = {
-  listCourses() {
-    return API().get("/api/courses");
+  listSubjects({ id }: { id: number }) {
+    return API().get(`/api/courses/${id}/subjects`);
   },
 };
 
