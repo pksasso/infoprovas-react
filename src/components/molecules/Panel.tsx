@@ -5,7 +5,7 @@ export const Panel = ({
   content,
 }: {
   title: string;
-  content?: JSX.Element;
+  content: JSX.Element;
 }) => {
   return (
     <div className="panel">
