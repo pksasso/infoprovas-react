@@ -6,7 +6,7 @@ import { List } from "../molecules/List";
 import { Panel } from "../molecules/Panel";
 
 const createLink = (disciplineId: any) => {
-  return `${disciplineId}`;
+  return `materia/${disciplineId}`;
 };
 
 export const SemestersTemplate = ({
