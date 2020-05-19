@@ -5,11 +5,11 @@ import { Disciplines } from "../../models/Discipline";
 import { List } from "../molecules/List";
 import { Panel } from "../molecules/Panel";
 
-const createLink = (x: any) => {
-  return `${x}`;
+const createLink = (disciplineId: any) => {
+  return `${disciplineId}`;
 };
 
-export const DisciplinesTemplate = ({
+export const SemestersTemplate = ({
   disciplines,
 }: {
   course?: number;
@@ -20,9 +20,9 @@ export const DisciplinesTemplate = ({
   const elective = disciplines.filter((item) => item.semester === 0);
   const mandatory = disciplines.filter((item) => item.semester !== 0);
 
-  const disciplinesPerPeriod = _.groupBy(mandatory, "semester");
+  const disciplinesPerSemester = _.groupBy(mandatory, "semester");
 
-  _.forEach(disciplinesPerPeriod, (value, key) => {
+  _.forEach(disciplinesPerSemester, (value, key) => {
     const ordered = _.sortBy(value, ["name"], ["asc"]);
     const links = ordered.map((item) => {
       return (

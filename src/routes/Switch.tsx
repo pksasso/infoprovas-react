@@ -1,14 +1,14 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { Contact } from "../components/pages/Contact";
-import { DisciplinesPage as Disciplines } from "../components/pages/Disciplines";
+import { SemestersPage as Semesters } from "../components/pages/Semesters";
 import { TemplatePage } from "../components/templates/Template";
 
 export const Pages = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <Disciplines />
+        <Semesters />
       </Route>
       <Route path="/provas">
         <TemplatePage title="Enviar Prova" />

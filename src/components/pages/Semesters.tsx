@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import InfoProvasService from "../../services/app";
-import { DisciplinesTemplate } from "../templates/Disciplines";
+import { SemestersTemplate } from "../templates/Semesters";
 
-export const DisciplinesPage = ({ courseId = 1 }: { courseId?: number }) => {
+export const SemestersPage = ({ courseId = 1 }: { courseId?: number }) => {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -33,5 +33,5 @@ export const DisciplinesPage = ({ courseId = 1 }: { courseId?: number }) => {
     return <div>Loading...</div>;
   }
 
-  return <DisciplinesTemplate disciplines={items} />;
+  return <SemestersTemplate disciplines={items} />;
 };
