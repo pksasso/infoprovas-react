@@ -86,13 +86,12 @@ const InfoProvasService = {
     message: String;
   }) {
     const messagePack = {
-      name: name,
-      email: email,
-      subject: subject,
-      message: message,
+      name,
+      email,
+      subject,
+      message,
     };
-    console.log(messagePack);
-    infoProvasAPI.post(`api/contact`, { messagePack }).then((res) => {
+    infoProvasAPI.post(`api/contact`, messagePack).then((res) => {
       console.log(res);
     });
   },
