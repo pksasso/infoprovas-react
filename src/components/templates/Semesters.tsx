@@ -55,7 +55,9 @@ export const SemestersTemplate = ({
 
   return (
     <div className="container is-fluid">
-      <div className="columns is-multiline is-centered">{panels}</div>
+      <div className="columns column is-multiline is-centered is-offset-2 is-8">
+        {panels}
+      </div>
     </div>
   );
 };
