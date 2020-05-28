@@ -74,6 +74,28 @@ const InfoProvasService = {
   fetchProfessorsByCourse({ courseId }: { courseId: number }) {
     return infoProvasAPI.get(`api/courses/${courseId}/professors`);
   },
+  postContact({
+    name,
+    email,
+    subject,
+    message,
+  }: {
+    name: String;
+    email: String;
+    subject: String;
+    message: String;
+  }) {
+    const messagePack = {
+      name: name,
+      email: email,
+      subject: subject,
+      message: message,
+    };
+    console.log(messagePack);
+    infoProvasAPI.post(`api/contact`, { messagePack }).then((res) => {
+      console.log(res);
+    });
+  },
 };
 
 export default InfoProvasService;
