@@ -12,7 +12,7 @@ export const Panel = ({
       <header className="panel-heading has-background-primary has-text-white-ter">
         <p>{title}</p>
       </header>
-      <section className="panel-block">{content}</section>
+      <section className="panel-block has-background-white">{content}</section>
     </div>
   );
 };
