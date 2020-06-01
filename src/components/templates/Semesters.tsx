@@ -93,7 +93,7 @@ export const SemestersTemplate = ({
         <Link className="button is-rounded is-primary" to="">
           Semestre
         </Link>
-        <Link className="button is-rounded is is-info" to="/professor">
+        <Link className="button is-rounded is is-info" to="/professores">
           Professor
         </Link>
       </div>

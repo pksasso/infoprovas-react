@@ -36,10 +36,10 @@ export const ProfessorsTemplate = ({
   return (
     <div>
       <div className="columns column is-12 is-centered">
-        <Link className="button is-rounded is-info" to="">
+        <Link className="button is-rounded is-info" to="/semestre">
           Semestre
         </Link>
-        <Link className="button is-rounded is-primary" to="/professor">
+        <Link className="button is-rounded is-primary" to="">
           Professor
         </Link>
       </div>
