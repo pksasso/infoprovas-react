@@ -74,6 +74,17 @@ const InfoProvasService = {
   fetchProfessorsByCourse({ courseId }: { courseId: number }) {
     return infoProvasAPI.get(`api/courses/${courseId}/professors`);
   },
+  getProfessorDetailsByCourse({
+    courseId,
+    professorId,
+  }: {
+    courseId: number;
+    professorId: number;
+  }) {
+    return infoProvasAPI.get(
+      `api/courses/${courseId}/professors/${professorId}`
+    );
+  },
   postContact({
     name,
     email,
