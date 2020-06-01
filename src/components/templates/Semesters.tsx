@@ -87,5 +87,17 @@ export const SemestersTemplate = ({
     </div>
   );
 
-  return <div>{showElective ? electiveBlock : mandatoryBlock}</div>;
+  return (
+    <div>
+      <div className="columns column is-12 is-centered">
+        <Link className="button is-rounded is-primary" to="">
+          Semestre
+        </Link>
+        <Link className="button is-rounded is is-info" to="/professor">
+          Professor
+        </Link>
+      </div>
+      {showElective ? electiveBlock : mandatoryBlock}
+    </div>
+  );
 };
