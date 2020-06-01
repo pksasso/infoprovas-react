@@ -2,6 +2,7 @@ import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { Contact } from "../components/pages/Contact";
 import { ExamsPage as Exams } from "../components/pages/Exams";
+import { ProfessorExamsPage as ProfessorExams } from "../components/pages/ProfessorExams";
 import { ProfessorsPage as Professors } from "../components/pages/Professors";
 import { SemestersPage as Semesters } from "../components/pages/Semesters";
 import { TemplatePage } from "../components/templates/Template";
@@ -16,9 +17,20 @@ export const Pages = () => {
       <Route path="/semestre">
         <Semesters />
       </Route>
-      <Route path="/professor">
+      <Route exact path="/professores">
         <Professors />
       </Route>
+      <Route
+        path={"/professor/:id"}
+        render={({ match }: Match) => {
+          return (
+            <ProfessorExams
+              courseId={1}
+              professorId={parseInt(match.params.id)}
+            />
+          );
+        }}
+      />
       <Route
         path={"/materia/:id"}
         render={({ match }: Match) => {
