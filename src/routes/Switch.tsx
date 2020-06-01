@@ -1,8 +1,9 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { Contact } from "../components/pages/Contact";
 import { ExamsPage as Exams } from "../components/pages/Exams";
-import { HomePage as Home } from "../components/pages/Home";
+import { ProfessorsPage as Professors } from "../components/pages/Professors";
+import { SemestersPage as Semesters } from "../components/pages/Semesters";
 import { TemplatePage } from "../components/templates/Template";
 import { MatchProps as Match } from "../models/MatchParams";
 
@@ -10,7 +11,13 @@ export const Pages = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <Home />
+        <Redirect from="/" to="/semestre" />
+      </Route>
+      <Route path="/semestre">
+        <Semesters />
+      </Route>
+      <Route path="/professor">
+        <Professors />
       </Route>
       <Route
         path={"/materia/:id"}
