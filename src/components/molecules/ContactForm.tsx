@@ -4,6 +4,18 @@ import { Dropdown } from "../atoms/Dropdown";
 import { TextArea } from "../atoms/TextArea";
 import { TextBox } from "../atoms/TextBox";
 
+interface ContactFormProps {
+  send: () => void;
+  name: string;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  email: string;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  subject: string;
+  setSubject: React.Dispatch<React.SetStateAction<string>>;
+  message: string;
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
+}
+
 export const ContactForm = ({
   send,
   name,
@@ -14,17 +26,7 @@ export const ContactForm = ({
   setSubject,
   message,
   setMessage,
-}: {
-  send: any;
-  name: string;
-  setName: any;
-  email: string;
-  setEmail: any;
-  subject: string;
-  setSubject: any;
-  message: string;
-  setMessage: any;
-}) => {
+}: ContactFormProps) => {
   const sendEmail = (e: React.FormEvent<EventTarget>): void => {
     e.preventDefault();
     send();
