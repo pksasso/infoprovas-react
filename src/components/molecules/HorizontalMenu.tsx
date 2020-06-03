@@ -7,8 +7,37 @@ export const HorizontalMenu = ({ items }: { items: MenuItem[] }) => {
   ));
 
   return (
-    <nav className="navbar" style={{ justifyContent: "center" }}>
-      {horizontalMenuItems}
+    <nav className="navbar">
+      <div className="navbar-brand">
+        {/* eslint-disable-next-line */}
+        <a
+          id="navbar-burger"
+          role="button"
+          className="navbar-burger burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+          onClick={() => {
+            document
+              ?.getElementById("navbar-burger")
+              ?.classList?.toggle("is-active");
+            document
+              ?.getElementById("navbar-menu")
+              ?.classList?.toggle("is-active");
+          }}
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div
+        id="navbar-menu"
+        className="navbar-menu"
+        style={{ justifyContent: "center" }}
+      >
+        {horizontalMenuItems}
+      </div>
     </nav>
   );
 };
