@@ -8,7 +8,7 @@ export const Panel = ({
   content: JSX.Element;
 }) => {
   const header = (
-    <header className="panel-heading has-background-primary has-text-white-ter">
+    <header className="panel-heading has-background-primary has-text-white-ter has-text-centered is-size-5">
       <p>{title}</p>
     </header>
   );

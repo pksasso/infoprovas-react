@@ -90,12 +90,18 @@ export const SemestersTemplate = ({
   return (
     <div>
       <div className="columns column is-12 is-centered">
-        <Link className="button is-rounded is-primary" to="">
-          Semestre
-        </Link>
-        <Link className="button is-rounded is is-info" to="/professores">
-          Professor
-        </Link>
+        <div className="field is-grouped">
+          <div className="control">
+            <Link className="button is-rounded is-primary" to="">
+              Semestre
+            </Link>
+          </div>
+          <div className="control">
+            <Link className="button is-rounded is is-info" to="/professores">
+              Professor
+            </Link>
+          </div>
+        </div>
       </div>
       {showElective ? electiveBlock : mandatoryBlock}
     </div>
