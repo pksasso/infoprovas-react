@@ -10,7 +10,10 @@ export const Logo = ({
   description?: string;
 }) => {
   return (
-    <figure className={className}>
+    <figure
+      className={className ? className : "image"}
+      style={{ maxWidth: "320px", margin: "0 auto" }}
+    >
       <img src={imageSource} alt={description ?? "Application logo"} />
     </figure>
   );
