@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import { ButtonGroup } from "../components/molecules/ButtonGroup";
 import { Contact } from "../components/pages/Contact";
 import { ExamsPage as Exams } from "../components/pages/Exams";
 import { ProfessorExamsPage as ProfessorExams } from "../components/pages/ProfessorExams";
@@ -15,26 +16,40 @@ export const Pages = () => {
         <Redirect from="/" to="/semestre" />
       </Route>
       <Route path="/semestre">
-        <Semesters />
+        <>
+          <ButtonGroup />
+          <Semesters />
+        </>
       </Route>
       <Route exact path="/professores">
-        <Professors />
+        <>
+          <ButtonGroup />
+          <Professors />
+        </>
       </Route>
       <Route
         path={"/professor/:id"}
         render={({ match }: Match) => {
           return (
-            <ProfessorExams
-              courseId={1}
-              professorId={parseInt(match.params.id)}
-            />
+            <>
+              <ButtonGroup />
+              <ProfessorExams
+                courseId={1}
+                professorId={parseInt(match.params.id)}
+              />
+            </>
           );
         }}
       />
       <Route
         path={"/materia/:id"}
         render={({ match }: Match) => {
-          return <Exams courseId={1} subjectId={parseInt(match.params.id)} />;
+          return (
+            <>
+              <ButtonGroup />
+              <Exams courseId={1} subjectId={parseInt(match.params.id)} />
+            </>
+          );
         }}
       />
       <Route path="/provas">

@@ -9,7 +9,6 @@ export default function App() {
   return (
     <Router>
       <Header items={HORIZONTAL_NAVIGATION_MENU} logo={logo} />
-
       <Pages />
     </Router>
   );

@@ -1,7 +1,6 @@
 import React from "react";
 import { Logo } from "../atoms/Logo";
 import { MenuItem } from "../atoms/MenuItem";
-import { ButtonGroup } from "../molecules/ButtonGroup";
 import { HorizontalMenu } from "../molecules/HorizontalMenu";
 
 interface HeaderProps {
@@ -15,7 +14,6 @@ export const Header = ({ logo, items }: HeaderProps) => {
       <div className="section">
         <Logo imageSource={logo} />
       </div>
-      <ButtonGroup />
     </>
   );
 };
