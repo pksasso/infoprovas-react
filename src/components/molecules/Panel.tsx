@@ -3,8 +3,10 @@ import React from "react";
 export const Panel = ({
   title,
   content,
+  containerClass,
 }: {
   title?: string;
+  containerClass?: string;
   content: JSX.Element;
 }) => {
   const header = (
@@ -14,7 +16,7 @@ export const Panel = ({
   );
 
   return (
-    <div className="panel">
+    <div className="panel has-background-white" style={{ height: "100%" }}>
       {title ? header : <div></div>}
       <section className="panel-block has-background-white">{content}</section>
     </div>
