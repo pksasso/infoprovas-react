@@ -43,7 +43,7 @@ export const ProfessorExamsTemplate = ({
   });
 
   return (
-    <div className="container is-fluid">
+    <div className="container is-fullhd">
       <h1 className="title columns column is-12 is-centered">
         {professor?.name}
       </h1>

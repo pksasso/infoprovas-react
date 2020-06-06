@@ -17,7 +17,7 @@ export const TemplatePage = ({ title }: { title: string }) => {
   }
 
   return (
-    <div className="container is-fluid">
+    <div className="container is-fullhd">
       <div className="columns is-multiline is-centered">{items}</div>
     </div>
   );

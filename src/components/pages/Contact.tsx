@@ -14,20 +14,22 @@ export const Contact = () => {
   };
 
   return (
-    <div className="columns container is-fluid">
-      <div className="column is-offset-2 is-8 panel has-background-white">
-        <h1 className="title columns column is-12 is-centered">Contato</h1>
-        <ContactForm
-          send={sendEmail}
-          name={name}
-          setName={setName}
-          email={email}
-          setEmail={setEmail}
-          subject={subject}
-          setSubject={setSubject}
-          message={message}
-          setMessage={setMessage}
-        />
+    <div className="container is-fullhd">
+      <div className="columns">
+        <div className="column is-offset-2 is-8 panel has-background-white">
+          <h1 className="title columns column is-12 is-centered">Contato</h1>
+          <ContactForm
+            send={sendEmail}
+            name={name}
+            setName={setName}
+            email={email}
+            setEmail={setEmail}
+            subject={subject}
+            setSubject={setSubject}
+            message={message}
+            setMessage={setMessage}
+          />
+        </div>
       </div>
     </div>
   );

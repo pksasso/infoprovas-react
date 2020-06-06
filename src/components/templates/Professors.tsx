@@ -33,23 +33,5 @@ export const ProfessorsTemplate = ({
     </div>
   );
 
-  return (
-    <div>
-      <div className="columns column is-12 is-centered">
-        <div className="field is-grouped">
-          <div className="control">
-            <Link className="button is-rounded is-info" to="/semestre">
-              Semestre
-            </Link>
-          </div>
-          <div className="control">
-            <Link className="button is-rounded is-primary" to="">
-              Professor
-            </Link>
-          </div>
-        </div>
-      </div>
-      <div className="columns is-centered">{professorsPanel}</div>
-    </div>
-  );
+  return <div className="columns is-centered">{professorsPanel}</div>;
 };

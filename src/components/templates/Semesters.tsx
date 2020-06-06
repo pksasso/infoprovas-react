@@ -63,8 +63,8 @@ export const SemestersTemplate = ({
 
   const mandatoryBlock = (
     <div>
-      <div className="container is-fluid">
-        <div className="columns column is-multiline is-centered is-offset-2 is-8">
+      <div className="container is-fullhd">
+        <div className="columns is-multiline is-centered is-fullhd">
           {mandatoryPanels}
         </div>
       </div>
@@ -79,31 +79,13 @@ export const SemestersTemplate = ({
       <div className="columns  is-12 is-centered ">
         <ElectiveButton onClick={changeElectiveValue} />
       </div>
-      <div className="container is-fluid">
-        <div className="columns column is-multiline is-centered is-offset-2 is-8">
+      <div className="container is-fullhd">
+        <div className="columns is-multiline is-centered is-fullhd">
           {electivePanels}
         </div>
       </div>
     </div>
   );
 
-  return (
-    <div>
-      <div className="columns column is-12 is-centered">
-        <div className="field is-grouped">
-          <div className="control">
-            <Link className="button is-rounded is-primary" to="">
-              Semestre
-            </Link>
-          </div>
-          <div className="control">
-            <Link className="button is-rounded is is-info" to="/professores">
-              Professor
-            </Link>
-          </div>
-        </div>
-      </div>
-      {showElective ? electiveBlock : mandatoryBlock}
-    </div>
-  );
+  return <div>{showElective ? electiveBlock : mandatoryBlock}</div>;
 };

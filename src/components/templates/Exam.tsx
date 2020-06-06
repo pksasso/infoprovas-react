@@ -36,7 +36,7 @@ export const ExamTemplate = ({ exams }: { exams: Exam[] }) => {
   });
 
   return (
-    <div className="container is-fluid">
+    <div className="container is-fullhd">
       <div className="columns is-multiline is-centered">{panels}</div>
     </div>
   );
