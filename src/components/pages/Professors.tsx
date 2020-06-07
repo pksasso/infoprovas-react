@@ -17,7 +17,6 @@ export const ProfessorsPage = ({ courseId = 1 }: { courseId?: number }) => {
         setItems(response.data);
         setIsLoaded(false);
       } catch (err) {
-        console.log(err);
         setError(err);
       }
     };
