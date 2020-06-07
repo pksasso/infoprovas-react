@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 export const ButtonGroup = () => {
   const [active, setActive] = useState(true);
-  const [active2, setActive2] = useState(false);
+  const [inactive, setInactive] = useState(false);
 
   const { pathname: currentPath } = useLocation();
 
@@ -12,7 +12,7 @@ export const ButtonGroup = () => {
       <Link
         onClick={() => {
           setActive(true);
-          setActive2(false);
+          setInactive(false);
         }}
         className={
           active || currentPath === "/semestre"
@@ -26,10 +26,10 @@ export const ButtonGroup = () => {
       <Link
         onClick={() => {
           setActive(false);
-          setActive2(true);
+          setInactive(true);
         }}
         className={
-          active2 || currentPath === "/professores"
+          inactive || currentPath === "/professores"
             ? "button is-rounded is-primary"
             : "button is-rounded is-info"
         }
