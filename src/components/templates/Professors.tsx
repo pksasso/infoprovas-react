@@ -29,7 +29,9 @@ export const ProfessorsTemplate = ({
 
   professorsPanel.push(
     <div className="column is-8" key="professor">
-      <Panel content={<List data={professorLinks} />} />
+      <Panel
+        content={<List className={"list-items"} data={professorLinks} />}
+      />
     </div>
   );
 

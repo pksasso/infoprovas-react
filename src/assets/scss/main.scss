@@ -30,3 +30,23 @@ $link: $dark-grey;
 $link-hover: black;
 
 @import "bulma/bulma";
+
+ul.list-items {
+  flex-grow: 1;
+
+  @media screen and (min-width: 768px) {
+    columns: 1;
+  }
+
+  @media screen and (min-width: $tablet) {
+    columns: 2;
+  }
+
+  @media screen and (min-width: $desktop) {
+    columns: 2;
+  }
+
+  @media screen and (min-width: $widescreen) {
+    columns: 3;
+  }
+}
