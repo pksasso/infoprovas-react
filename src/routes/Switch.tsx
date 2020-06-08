@@ -32,7 +32,6 @@ export const Pages = () => {
         render={({ match }: Match) => {
           return (
             <>
-              <ButtonGroup />
               <ProfessorExams
                 courseId={1}
                 professorId={parseInt(match.params.id)}
@@ -46,7 +45,6 @@ export const Pages = () => {
         render={({ match }: Match) => {
           return (
             <>
-              <ButtonGroup />
               <Exams courseId={1} subjectId={parseInt(match.params.id)} />
             </>
           );
