@@ -6,6 +6,7 @@ import { ExamsPage as Exams } from "../components/pages/Exams";
 import { ProfessorExamsPage as ProfessorExams } from "../components/pages/ProfessorExams";
 import { ProfessorsPage as Professors } from "../components/pages/Professors";
 import { SemestersPage as Semesters } from "../components/pages/Semesters";
+import { SendExamPage as SendExam } from "../components/pages/SendExam";
 import { TemplatePage } from "../components/templates/Template";
 import { MatchProps as Match } from "../models/MatchParams";
 
@@ -51,7 +52,7 @@ export const Pages = () => {
         }}
       />
       <Route path="/provas">
-        <TemplatePage title="Enviar Prova" />
+        <SendExam />
       </Route>
       <Route path="/ajuda">
         <TemplatePage title="Ajuda" />
