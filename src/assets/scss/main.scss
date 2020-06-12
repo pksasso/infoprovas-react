@@ -7,6 +7,9 @@ $body-background-color: $background;
 $label-color: $dark-grey;
 $title-color: $primary-color;
 $info: $background;
+$footer-background-color: $background;
+
+$footer-padding: 0.3rem 0rem 0.3rem;
 
 //fonts
 $family-primary: $roboto;
@@ -49,4 +52,8 @@ ul.list-items {
   @media screen and (min-width: $widescreen) {
     columns: 3;
   }
+}
+
+footer.footer {
+  margin-top: 2rem;
 }
