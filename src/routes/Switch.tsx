@@ -3,11 +3,11 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { ButtonGroup } from "../components/molecules/ButtonGroup";
 import { Contact } from "../components/pages/Contact";
 import { ExamsPage as Exams } from "../components/pages/Exams";
+import { HelpPage as Help } from "../components/pages/Help";
 import { ProfessorExamsPage as ProfessorExams } from "../components/pages/ProfessorExams";
 import { ProfessorsPage as Professors } from "../components/pages/Professors";
 import { SemestersPage as Semesters } from "../components/pages/Semesters";
 import { SendExamPage as SendExam } from "../components/pages/SendExam";
-import { TemplatePage } from "../components/templates/Template";
 import { MatchProps as Match } from "../models/MatchParams";
 
 export const Pages = () => {
@@ -55,7 +55,7 @@ export const Pages = () => {
         <SendExam />
       </Route>
       <Route path="/ajuda">
-        <TemplatePage title="Ajuda" />
+        <Help />
       </Route>
       <Route path="/contato">
         <Contact />
