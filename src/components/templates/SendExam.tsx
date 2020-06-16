@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { Disciplines } from "../../models/Discipline";
 import { ExamType } from "../../models/ExamType";
 import { Professor } from "../../models/Professor";
@@ -18,6 +19,10 @@ export const SendExamTemplate = ({
   const [year, setYear] = useState<number>();
   const [semester, setSemester] = useState<number>();
   const [examType, setExamType] = useState<number>();
+  const [username, setUsername] = useState<string>();
+  const [tokenId, setTokenId] = useState<string>();
+  const [googleId, setGoogleId] = useState<string>();
+  const [logged, setLogged] = useState(false);
 
   const sendExam = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
@@ -25,10 +30,10 @@ export const SendExamTemplate = ({
     const examToSend = {
       semester: finalSemester,
       file: "arquivo.pdf",
-      google_id: "123123",
-      google_token: "123123",
-      subjectId,
-      professorId,
+      google_id: googleId,
+      google_token: tokenId,
+      subject_id: subjectId,
+      professor_id: professorId,
       exam_type_id: examType,
     };
     console.log(examToSend);
@@ -75,6 +80,49 @@ export const SendExamTemplate = ({
     );
   });
 
+  const loginBlock = () => {
+    return (
+      <GoogleLogin
+        clientId={process.env.GOOGLE_AUTH_ID || ""}
+        buttonText="Login"
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        cookiePolicy={"single_host_origin"}
+      />
+    );
+  };
+
+  const loggedBlock = () => {
+    return (
+      <div>
+        <span>
+          Você está logado como <strong>{username}</strong>
+        </span>
+        <GoogleLogout
+          clientId={process.env.GOOGLE_AUTH_ID || ""}
+          buttonText="Logout"
+          onLogoutSuccess={logout}
+        ></GoogleLogout>
+      </div>
+    );
+  };
+
+  //TODO arrumar a tipagem GoogleLoginResponse|GoogleLoginResponseOffline
+  const responseGoogle = (response: any) => {
+    setUsername(response.profileObj.name);
+    setTokenId(response.tokenId);
+    setGoogleId(response.googleId);
+    setLogged(!logged);
+    console.log(response);
+  };
+
+  const logout = () => {
+    setUsername("");
+    setTokenId("");
+    setGoogleId("");
+    setLogged(!logged);
+  };
+
   return (
     <div className="container is-fullhd">
       <div className="columns">
@@ -82,7 +130,7 @@ export const SendExamTemplate = ({
           <h1 className=" columns column is-12 is-centered">
             Preencha os campos abaixo com os dados da prova:
           </h1>
-
+          {logged ? loggedBlock : loginBlock}
           <div className="field ">
             <label className="label">Curso</label>
             <div className="field-body">
