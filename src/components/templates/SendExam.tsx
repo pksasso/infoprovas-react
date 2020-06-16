@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
+import {
+  GoogleLogin,
+  GoogleLoginResponse,
+  GoogleLoginResponseOffline,
+  GoogleLogout,
+} from "react-google-login";
 import { Disciplines } from "../../models/Discipline";
 import { ExamType } from "../../models/ExamType";
 import { Professor } from "../../models/Professor";
@@ -108,12 +113,17 @@ export const SendExamTemplate = ({
   };
 
   //TODO arrumar a tipagem GoogleLoginResponse|GoogleLoginResponseOffline
-  const responseGoogle = (response: any) => {
-    setUsername(response.profileObj.name);
-    setTokenId(response.tokenId);
-    setGoogleId(response.googleId);
+  const responseGoogle = (
+    response: GoogleLoginResponse | GoogleLoginResponseOffline
+  ) => {
+    "profileObj" in response
+      ? setUsername(response.profileObj.name)
+      : setUsername("");
+
+    "googleId" in response ? setGoogleId(response.googleId) : setGoogleId("");
+
+    "tokenId" in response ? setTokenId(response.tokenId) : setTokenId("");
     setLogged(!logged);
-    console.log(response);
   };
 
   const logout = () => {
