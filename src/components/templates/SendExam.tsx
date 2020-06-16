@@ -112,7 +112,6 @@ export const SendExamTemplate = ({
     );
   };
 
-  //TODO arrumar a tipagem GoogleLoginResponse|GoogleLoginResponseOffline
   const responseGoogle = (
     response: GoogleLoginResponse | GoogleLoginResponseOffline
   ) => {
