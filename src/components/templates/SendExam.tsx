@@ -1,4 +1,6 @@
+import filesize from "filesize";
 import React, { useState } from "react";
+import Dropzone from "react-dropzone";
 import {
   GoogleLogin,
   GoogleLoginResponse,
@@ -6,8 +8,10 @@ import {
   GoogleLogout,
 } from "react-google-login";
 import { Disciplines } from "../../models/Discipline";
+import { ExamFile } from "../../models/ExamFile";
 import { ExamType } from "../../models/ExamType";
 import { Professor } from "../../models/Professor";
+import InfoProvasService from "../../services/app";
 import { ActionButton } from "../atoms/ActionButton";
 
 export const SendExamTemplate = ({
@@ -27,21 +31,26 @@ export const SendExamTemplate = ({
   const [username, setUsername] = useState<string>();
   const [tokenId, setTokenId] = useState<string>();
   const [googleId, setGoogleId] = useState<string>();
+  const [file, setFile] = useState<ExamFile>();
   const [logged, setLogged] = useState(false);
 
   const sendExam = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
+    const courseId = 1;
+    const { postExam } = InfoProvasService;
     const finalSemester = year?.toString() + "." + semester?.toString();
     const examToSend = {
-      semester: finalSemester,
-      file: "arquivo.pdf",
-      google_id: googleId,
-      google_token: tokenId,
-      subject_id: subjectId,
-      professor_id: professorId,
-      exam_type_id: examType,
+      semester: finalSemester!,
+      file: file?.file!,
+      google_id: googleId!,
+      google_token: tokenId!,
+      subject_id: subjectId!,
+      professor_id: professorId!,
+      exam_type_id: examType!,
     };
-    console.log(examToSend);
+    if (examToSend) {
+      postExam({ courseId, exam: examToSend });
+    }
   };
 
   const YearOptions = () => {
@@ -85,34 +94,19 @@ export const SendExamTemplate = ({
     );
   });
 
-  const loginBlock = () => {
-    return (
-      <GoogleLogin
-        clientId={process.env.GOOGLE_AUTH_ID || ""}
-        buttonText="Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={"single_host_origin"}
-      />
-    );
+  const acceptFile = (files: File[]) => {
+    const uploaded = {
+      file: files[0],
+      name: files[0].name,
+      size: filesize(files[0].size),
+    };
+
+    if (logged) {
+      setFile(uploaded);
+    }
   };
 
-  const loggedBlock = () => {
-    return (
-      <div>
-        <span>
-          Você está logado como <strong>{username}</strong>
-        </span>
-        <GoogleLogout
-          clientId={process.env.GOOGLE_AUTH_ID || ""}
-          buttonText="Logout"
-          onLogoutSuccess={logout}
-        ></GoogleLogout>
-      </div>
-    );
-  };
-
-  const responseGoogle = (
+  const loginGoogle = (
     response: GoogleLoginResponse | GoogleLoginResponseOffline
   ) => {
     "profileObj" in response
@@ -125,11 +119,181 @@ export const SendExamTemplate = ({
     setLogged(!logged);
   };
 
-  const logout = () => {
+  const logoutGoogle = () => {
     setUsername("");
     setTokenId("");
     setGoogleId("");
     setLogged(!logged);
+  };
+
+  const loginBlock = () => {
+    return (
+      <div className="columns column is-12 is-centered">
+        <GoogleLogin
+          clientId={process.env.REACT_APP_GOOGLE_AUTH_ID || ""}
+          buttonText="Login"
+          onSuccess={loginGoogle}
+          onFailure={() => {}}
+          cookiePolicy={"single_host_origin"}
+        />
+      </div>
+    );
+  };
+
+  const loggedBlock = () => {
+    return (
+      <div className="columns column is-12 is-centered">
+        <span>
+          Você está logado como <strong>{username} </strong>
+        </span>
+        <GoogleLogout
+          clientId={process.env.REACT_APP_GOOGLE_AUTH_ID || ""}
+          buttonText="Logout"
+          onLogoutSuccess={logoutGoogle}
+        ></GoogleLogout>
+      </div>
+    );
+  };
+
+  const form = () => {
+    return (
+      <div>
+        <div className="field ">
+          <label className="label">Curso</label>
+          <div className="field-body">
+            <div className="field ">
+              <div className="control ">
+                <div className="select is-fullwidth ">
+                  <select>
+                    <option>Ciências da Computação</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="field">
+            <div className="field-body">
+              <div style={{ maxWidth: "50%" }} className="field is-expanded">
+                <label className="label">Disciplina</label>
+                <div className="control ">
+                  <div className="select is-fullwidth ">
+                    <select
+                      onChange={(event) => {
+                        setSubjectId(Number(event.target.value));
+                      }}
+                    >
+                      <option>Selecione</option>
+                      {SubjectsOptions}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div className="field is-expanded ">
+                <label className="label">Professor</label>
+                <div className="control ">
+                  <div className="select is-fullwidth ">
+                    <select
+                      onChange={(event) => {
+                        setProfessorId(Number(event.target.value));
+                      }}
+                    >
+                      <option>Selecione</option>
+                      {ProfessorsOptions}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="field">
+            <div className="field-body">
+              <div className="field">
+                <label className="label">Ano</label>
+                <div className="control ">
+                  <div className="select is-fullwidth ">
+                    <select
+                      onChange={(event) => {
+                        setYear(Number(event.target.value));
+                      }}
+                    >
+                      <option>Selecione</option>
+                      {YearOptions()}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">Semestre</label>
+                <div className="control ">
+                  <div className="select is-fullwidth ">
+                    <select
+                      onChange={(event) => {
+                        setSemester(Number(event.target.value));
+                      }}
+                    >
+                      <option>Selecione</option>
+                      <option value="1">Primeiro</option>
+                      <option value="2">Segundo</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="field">
+            <div className="field-body">
+              <div style={{ maxWidth: "50%" }} className="field">
+                <label className="label">Tipo</label>
+                <div className="control ">
+                  <div className="select is-fullwidth ">
+                    <select
+                      onChange={(event) => {
+                        setExamType(Number(event.target.value));
+                      }}
+                    >
+                      <option>Selecione</option>
+                      {ExamTypesOptions}
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <fieldset>
+                <label className="label">Arquivo PDF</label>
+                <Dropzone
+                  onDropAccepted={(acceptedFiles) => acceptFile(acceptedFiles)}
+                  onDropRejected={() => {
+                    alert("arquivo não suportado");
+                  }}
+                  maxSize={5000000}
+                  accept=".pdf"
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <section>
+                      <div className="drop-container" {...getRootProps()}>
+                        <input {...getInputProps()} />
+                        <p>
+                          {file
+                            ? file.name + "(" + file.size + ")"
+                            : "Selecione um arquivo"}
+                        </p>
+                      </div>
+                    </section>
+                  )}
+                </Dropzone>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns column is-12 is-centered">
+          <ActionButton title="Enviar" onClick={sendExam} />
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -139,128 +303,12 @@ export const SendExamTemplate = ({
           <h1 className=" columns column is-12 is-centered">
             Preencha os campos abaixo com os dados da prova:
           </h1>
-          {logged ? loggedBlock : loginBlock}
-          <div className="field ">
-            <label className="label">Curso</label>
-            <div className="field-body">
-              <div className="field ">
-                <div className="control ">
-                  <div className="select is-fullwidth ">
-                    <select>
-                      <option>Ciências da Computação</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="field">
-              <div className="field-body">
-                <div style={{ maxWidth: "50%" }} className="field is-expanded">
-                  <label className="label">Disciplina</label>
-                  <div className="control ">
-                    <div className="select is-fullwidth ">
-                      <select
-                        onChange={(event) => {
-                          setSubjectId(Number(event.target.value));
-                        }}
-                      >
-                        <option>Selecione</option>
-                        {SubjectsOptions}
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div className="field is-expanded ">
-                  <label className="label">Professor</label>
-                  <div className="control ">
-                    <div className="select is-fullwidth ">
-                      <select
-                        onChange={(event) => {
-                          setProfessorId(Number(event.target.value));
-                        }}
-                      >
-                        <option>Selecione</option>
-                        {ProfessorsOptions}
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="field">
-              <div className="field-body">
-                <div className="field">
-                  <label className="label">Ano</label>
-                  <div className="control ">
-                    <div className="select is-fullwidth ">
-                      <select
-                        onChange={(event) => {
-                          setYear(Number(event.target.value));
-                        }}
-                      >
-                        <option>Selecione</option>
-                        {YearOptions()}
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div className="field">
-                  <label className="label">Semestre</label>
-                  <div className="control ">
-                    <div className="select is-fullwidth ">
-                      <select
-                        onChange={(event) => {
-                          setSemester(Number(event.target.value));
-                        }}
-                      >
-                        <option>Selecione</option>
-                        <option value="1">Primeiro</option>
-                        <option value="1">Segundo</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="field">
-              <div className="field-body">
-                <div style={{ maxWidth: "50%" }} className="field">
-                  <label className="label">Tipo</label>
-                  <div className="control ">
-                    <div className="select is-fullwidth ">
-                      <select
-                        onChange={(event) => {
-                          setExamType(Number(event.target.value));
-                        }}
-                      >
-                        <option>Selecione</option>
-                        {ExamTypesOptions}
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <fieldset disabled>
-                  <div className="field is-fullwidth">
-                    <label className="label">Arquivo PDF</label>
-                    <div className="control">
-                      <input
-                        className="input"
-                        type="text"
-                        placeholder="Procurar"
-                      />
-                    </div>
-                  </div>
-                </fieldset>
-              </div>
-            </div>
-          </div>
-
-          <div className="columns column is-12 is-centered">
-            <ActionButton title="Enviar" onClick={sendExam} />
-          </div>
+          {logged ? loggedBlock() : loginBlock()}
+          {logged ? (
+            <fieldset>{form()}</fieldset>
+          ) : (
+            <fieldset disabled>{form()}</fieldset>
+          )}
         </div>
       </div>
     </div>
