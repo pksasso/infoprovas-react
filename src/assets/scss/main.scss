@@ -57,3 +57,10 @@ ul.list-items {
 footer.footer {
   margin-top: 2rem;
 }
+
+div.drop-container {
+  border: 1px dashed $dark-grey;
+  border-radius: 5px;
+  padding: 6px;
+  cursor: pointer;
+}
