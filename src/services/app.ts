@@ -1,3 +1,4 @@
+import { ExamToSend } from "../models/ExamToSend";
 import infoProvasAPI from "./API";
 
 const InfoProvasService = {
@@ -105,6 +106,22 @@ const InfoProvasService = {
     infoProvasAPI.post(`api/contact`, messagePack).then((res) => {
       console.log(res);
     });
+  },
+  postExam({ courseId, exam }: { courseId: number; exam: ExamToSend }) {
+    const sendData = new FormData();
+    sendData.append("file", exam.file);
+    sendData.append("semester", exam.semester);
+    sendData.append("exam_type_id", String(exam.exam_type_id));
+    sendData.append("google_id", exam.google_id);
+    sendData.append("google_token", exam.google_token);
+    sendData.append("professor_id", String(exam.professor_id));
+    sendData.append("subject_id", String(exam.subject_id));
+
+    infoProvasAPI
+      .post(`api/courses/${courseId}/new_exam`, sendData)
+      .then((res) => {
+        console.log(res);
+      });
   },
 };
 
