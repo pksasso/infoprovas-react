@@ -5,7 +5,7 @@ import { SendExamTemplate } from "../templates/SendExam";
 export const SendExamPage = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [courseId, setCourseId] = useState(0);
+  const [courseId] = useState(1);
   const [examTypes, setExamTypes] = useState([]);
   const [professors, setProfessors] = useState([]);
   const [subjects, setSubjects] = useState([]);
@@ -14,7 +14,6 @@ export const SendExamPage = () => {
     const getProfessors = async () => {
       const { fetchProfessorsByCourse } = InfoProvasService;
       try {
-        setCourseId(1);
         setIsLoaded(true);
         const response = await fetchProfessorsByCourse({ courseId });
         setProfessors(response.data);
@@ -27,7 +26,6 @@ export const SendExamPage = () => {
     const getSubjects = async () => {
       const { fetchSubjects } = InfoProvasService;
       try {
-        setCourseId(1);
         setIsLoaded(true);
         const response = await fetchSubjects({ courseId });
         setSubjects(response.data);
