@@ -11,8 +11,8 @@ export const HorizontalMenu = ({ items }: { items: MenuItem[] }) => {
       <nav className="navbar">
         <div className="container">
           <div className="navbar-brand">
-            {/* eslint-disable-next-line */}
             <a
+              href="#navbar-burger"
               id="navbar-burger"
               role="button"
               className="navbar-burger burger"
