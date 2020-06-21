@@ -19,7 +19,6 @@ export const SendExamPage = () => {
         setProfessors(response.data);
         setIsLoaded(false);
       } catch (err) {
-        console.log(err);
         setError(err);
       }
     };
@@ -32,7 +31,6 @@ export const SendExamPage = () => {
         setSubjects(response.data);
         setIsLoaded(false);
       } catch (err) {
-        console.log(err);
         setError(err);
       }
     };
@@ -45,7 +43,6 @@ export const SendExamPage = () => {
         setExamTypes(response.data);
         setIsLoaded(false);
       } catch (err) {
-        console.log(err);
         setError(err);
       }
     };

@@ -103,9 +103,7 @@ const InfoProvasService = {
       subject,
       message,
     };
-    infoProvasAPI.post(`api/contact`, messagePack).then((res) => {
-      console.log(res);
-    });
+    infoProvasAPI.post(`api/contact`, messagePack).then((res) => {});
   },
   postExam({ courseId, exam }: { courseId: number; exam: ExamToSend }) {
     const sendData = new FormData();
@@ -119,9 +117,7 @@ const InfoProvasService = {
 
     infoProvasAPI
       .post(`api/courses/${courseId}/new_exam`, sendData)
-      .then((res) => {
-        console.log(res);
-      });
+      .then((res) => {});
   },
 };
 

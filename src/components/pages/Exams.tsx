@@ -23,7 +23,6 @@ export const ExamsPage = ({
         setItems(response.data);
         setIsLoaded(false);
       } catch (err) {
-        console.log(err);
         setError(err);
       }
     };

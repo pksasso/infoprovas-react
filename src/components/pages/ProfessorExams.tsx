@@ -25,7 +25,6 @@ export const ProfessorExamsPage = ({
         setItems(response.data);
         setIsLoaded(false);
       } catch (err) {
-        console.log(err);
         setError(err);
       }
     };
@@ -38,9 +37,7 @@ export const ProfessorExamsPage = ({
           professorId,
         });
         setProfessor(response.data);
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     };
 
     getProfessorExams();
