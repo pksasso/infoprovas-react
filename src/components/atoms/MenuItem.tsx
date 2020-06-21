@@ -8,7 +8,7 @@ export interface MenuItem {
 
 export const MenuItem = ({ path, name }: MenuItem) => {
   return (
-    <Link className="navbar-item is-size-4" to={path}>
+    <Link className="navbar-item is-size-5" to={path}>
       {name}
     </Link>
   );
