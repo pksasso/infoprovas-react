@@ -35,9 +35,15 @@ export const ExamTemplate = ({ exams }: { exams: Exam[] }) => {
     );
   });
 
+  const zeroExams = () => <h2>Não há provas desta disciplina</h2>
+
   return (
     <div className="container is-fullhd">
-      <div className="columns is-multiline is-centered">{panels}</div>
+      <div className="columns is-multiline is-centered">
+        {
+          panels.length === 0 ? zeroExams() :
+            panels
+        }</div>
     </div>
   );
 };
