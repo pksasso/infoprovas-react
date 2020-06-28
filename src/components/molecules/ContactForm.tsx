@@ -27,10 +27,22 @@ export const ContactForm = ({
   message,
   setMessage,
 }: ContactFormProps) => {
+
   const sendEmail = (e: React.FormEvent<EventTarget>): void => {
     e.preventDefault();
-    send();
+    if (isEmail(email) && name.length > 0 && subject.length > 0 && message.length > 0) {
+      send();
+    } else {
+      alert('Preencha todos os campos');
+    }
   };
+
+  function isEmail(email: string) {
+    if (/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      return true;
+    }
+    return false;
+  }
 
   return (
     <div className=" column is-offset-1 is-10">
