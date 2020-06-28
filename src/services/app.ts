@@ -86,7 +86,7 @@ const InfoProvasService = {
       `api/courses/${courseId}/professors/${professorId}`
     );
   },
-  postContact({
+  async postContact({
     name,
     email,
     subject,
@@ -103,7 +103,12 @@ const InfoProvasService = {
       subject,
       message,
     };
-    infoProvasAPI.post(`api/contact`, messagePack).then((res) => {});
+    const res = await infoProvasAPI.post(`api/contact`, messagePack).catch(error => {
+      if (error.response) {
+        return error.response;
+      }
+    });
+    return res;
   },
   postExam({ courseId, exam }: { courseId: number; exam: ExamToSend }) {
     const sendData = new FormData();
