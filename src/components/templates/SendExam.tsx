@@ -1,5 +1,6 @@
 import filesize from "filesize";
-import React, { useState } from "react";
+import Cookies from "js-cookie";
+import React, { useEffect, useState } from "react";
 import Dropzone from "react-dropzone";
 import {
   GoogleLogin,
@@ -33,6 +34,29 @@ export const SendExamTemplate = ({
   const [googleId, setGoogleId] = useState<string>();
   const [file, setFile] = useState<ExamFile>();
   const [logged, setLogged] = useState(false);
+
+  const readCookies = () => {
+    const cookieUsername = Cookies.get("username");
+    const cookieGoogleId = Cookies.get("googleId");
+    const cookieTokenId = Cookies.get("tokenId");
+    const cookieLogged = Cookies.get("logged");
+    if (cookieUsername) {
+      setUsername(cookieUsername);
+    }
+    if (cookieGoogleId) {
+      setGoogleId(cookieGoogleId);
+    }
+    if (cookieTokenId) {
+      setTokenId(cookieTokenId);
+    }
+    if (cookieLogged) {
+      if (cookieLogged === "true") setLogged(true);
+    }
+  };
+
+  useEffect(() => {
+    readCookies();
+  }, []);
 
   const sendExam = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
@@ -109,21 +133,40 @@ export const SendExamTemplate = ({
   const loginGoogle = (
     response: GoogleLoginResponse | GoogleLoginResponseOffline
   ) => {
-    "profileObj" in response
-      ? setUsername(response.profileObj.name)
-      : setUsername("");
+    if ("profileObj" in response) {
+      setUsername(response.profileObj.name);
+      Cookies.set("username", response.profileObj.name, { expires: 7 });
+    } else {
+      setUsername("");
+    }
 
-    "googleId" in response ? setGoogleId(response.googleId) : setGoogleId("");
+    if ("googleId" in response) {
+      setGoogleId(response.googleId);
+      Cookies.set("googleId", response.googleId, { expires: 7 });
+    } else {
+      setGoogleId("");
+    }
 
-    "tokenId" in response ? setTokenId(response.tokenId) : setTokenId("");
+    if ("tokenId" in response) {
+      setTokenId(response.tokenId);
+      Cookies.set("tokenId", response.tokenId, { expires: 7 });
+    } else {
+      setTokenId("");
+    }
+
+    Cookies.set("logged", "true", { expires: 7 });
     setLogged(!logged);
   };
 
   const logoutGoogle = () => {
     setUsername("");
+    Cookies.remove("username");
     setTokenId("");
+    Cookies.remove("googleId");
     setGoogleId("");
+    Cookies.remove("tokenId");
     setLogged(!logged);
+    Cookies.remove("logged");
   };
 
   const loginBlock = () => {
