@@ -19,9 +19,15 @@ export const ExamTemplate = ({ exams }: { exams: Exam[] }) => {
     const orderedByYear = _.sortBy(value, ["semester"], ["asc"]);
     const links = orderedByYear.map((item) => {
       return (
-        <div key={item.id}>{`${formatYearAndPeriod(
-          item.semester
-        )}° Semestre | ${item.professor.name}`}</div>
+        <a
+          key={item.id}
+          target="blank"
+          href={`https://infoprovas-api.herokuapp.com/api/courses/1/subjects/${item.subject.id}/exams/${item.id}/file`}
+        >
+          {`${formatYearAndPeriod(item.semester)}° Semestre | ${
+            item.professor.name
+          }`}
+        </a>
       );
     });
 
@@ -35,15 +41,13 @@ export const ExamTemplate = ({ exams }: { exams: Exam[] }) => {
     );
   });
 
-  const zeroExams = () => <h2>Não há provas desta disciplina</h2>
+  const zeroExams = () => <h2>Não há provas desta disciplina</h2>;
 
   return (
     <div className="container is-fullhd">
       <div className="columns is-multiline is-centered">
-        {
-          panels.length === 0 ? zeroExams() :
-            panels
-        }</div>
+        {panels.length === 0 ? zeroExams() : panels}
+      </div>
     </div>
   );
 };

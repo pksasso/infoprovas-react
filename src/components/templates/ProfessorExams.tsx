@@ -26,9 +26,15 @@ export const ProfessorExamsTemplate = ({
     const orderedByYear = _.sortBy(value, ["semester"], ["asc"]);
     const links = orderedByYear.map((item) => {
       return (
-        <div key={item.id}>{`${formatYearAndPeriod(
-          item.semester
-        )}° Semestre | ${item.subject.name}`}</div>
+        <a
+          key={item.id}
+          target="blank"
+          href={`https://infoprovas-api.herokuapp.com/api/courses/1/subjects/${item.subject.id}/exams/${item.id}/file`}
+        >
+          {`${formatYearAndPeriod(item.semester)}° Semestre | ${
+            item.subject.name
+          }`}
+        </a>
       );
     });
 
