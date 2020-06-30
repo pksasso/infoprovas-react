@@ -34,9 +34,16 @@ $link-hover: black;
 
 @import "bulma/bulma";
 
-html {
+html,
+body {
   overflow-x: hidden;
   overflow-y: auto;
+  min-height: 100%;
+}
+
+.section-logo {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 ul.list-items {

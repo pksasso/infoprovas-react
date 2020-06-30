@@ -11,7 +11,7 @@ export const Header = ({ logo, items }: HeaderProps) => {
   return (
     <>
       <HorizontalMenu items={items} />
-      <div className="section">
+      <div className="section section-logo">
         <Logo imageSource={logo} />
       </div>
     </>
