@@ -103,12 +103,21 @@ const InfoProvasService = {
       subject,
       message,
     };
-    const res = await infoProvasAPI.post(`api/contact`, messagePack).catch(error => {
-      if (error.response) {
-        return error.response;
-      }
-    });
+    const res = await infoProvasAPI
+      .post(`api/contact`, messagePack)
+      .catch((error) => {
+        if (error.response) {
+          return error.response;
+        }
+      });
     return res;
+  },
+  getPdf() {
+    infoProvasAPI
+      .get(
+        "https://infoprovas-api.herokuapp.com/api/courses/1/subjects/1/exams/562/file"
+      )
+      .then((res) => res.data);
   },
   postExam({ courseId, exam }: { courseId: number; exam: ExamToSend }) {
     const sendData = new FormData();
