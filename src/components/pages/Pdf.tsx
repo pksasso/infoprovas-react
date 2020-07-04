@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
+import { useParams } from "react-router-dom";
 import arquivo from "../../assets/images/testeGrande.pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -7,6 +8,11 @@ export const Pdf = () => {
   const [numPages, setNumPages] = useState<number>(1);
   const [pageNumber, setPageNumber] = useState(1);
   const [scale, setScale] = useState<number>(1);
+  const { course_id, subject_id, exam_id } = useParams();
+
+  console.log(course_id);
+  console.log(subject_id);
+  console.log(exam_id);
 
   function onDocumentLoadSuccess(numPages: number) {
     setNumPages(numPages);

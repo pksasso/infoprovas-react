@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React from "react";
+import { Link } from "react-router-dom";
 import { Exam } from "../../models/Exam";
 import { List } from "../molecules/List";
 import { Panel } from "../molecules/Panel";
@@ -19,15 +20,14 @@ export const ExamTemplate = ({ exams }: { exams: Exam[] }) => {
     const orderedByYear = _.sortBy(value, ["semester"], ["asc"]);
     const links = orderedByYear.map((item) => {
       return (
-        <a
+        <Link
           key={item.id}
-          target="blank"
-          href={`https://infoprovas-api.herokuapp.com/api/courses/1/subjects/${item.subject.id}/exams/${item.id}/file`}
+          to={`curso/1/materia/${item.subject.id}/prova/${item.id}`}
         >
           {`${formatYearAndPeriod(item.semester)}° Semestre | ${
             item.professor.name
           }`}
-        </a>
+        </Link>
       );
     });
 
@@ -36,6 +36,7 @@ export const ExamTemplate = ({ exams }: { exams: Exam[] }) => {
         <Panel
           title={`${value[0].exam_type.name}`}
           content={<List data={links} />}
+          //asdas
         />
       </div>
     );

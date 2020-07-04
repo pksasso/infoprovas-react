@@ -52,6 +52,9 @@ export const Pages = () => {
           );
         }}
       />
+      <Route path={`/curso/:course_id/materia/:subject_id:/prova/{exam_id}`}>
+        <Pdf />
+      </Route>
       <Route path="/provas">
         <SendExam />
       </Route>
