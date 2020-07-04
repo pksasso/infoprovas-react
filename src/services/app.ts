@@ -91,24 +91,28 @@ const InfoProvasService = {
     email,
     subject,
     message,
+    captcha,
   }: {
-    name: String;
-    email: String;
-    subject: String;
-    message: String;
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+    captcha: string;
   }) {
     const messagePack = {
       name,
       email,
       subject,
       message,
+      "g-recaptcha-response": captcha,
     };
-    const res = await infoProvasAPI.post(`api/contact`, messagePack).catch(error => {
+    try {
+      return await infoProvasAPI.post(`api/contact`, messagePack);
+    } catch (error) {
       if (error.response) {
         return error.response;
       }
-    });
-    return res;
+    }
   },
   postExam({ courseId, exam }: { courseId: number; exam: ExamToSend }) {
     const sendData = new FormData();

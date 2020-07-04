@@ -1,11 +1,12 @@
 import React from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { ActionButton } from "../atoms/ActionButton";
 import { Dropdown } from "../atoms/Dropdown";
 import { TextArea } from "../atoms/TextArea";
 import { TextBox } from "../atoms/TextBox";
 
 interface ContactFormProps {
-  send: () => void;
+  sendEmail: (token: string) => void;
   name: string;
   setName: React.Dispatch<React.SetStateAction<string>>;
   email: string;
@@ -17,7 +18,7 @@ interface ContactFormProps {
 }
 
 export const ContactForm = ({
-  send,
+  sendEmail,
   name,
   setName,
   email,
@@ -27,26 +28,26 @@ export const ContactForm = ({
   message,
   setMessage,
 }: ContactFormProps) => {
+  const RECAPTCHA_KEY = process.env.REACT_APP_RECAPTCHA || "";
+  const recaptchaRef = React.createRef<any>();
 
-  const sendEmail = (e: React.FormEvent<EventTarget>): void => {
-    e.preventDefault();
-    if (isEmail(email) && name.length > 0 && subject.length > 0 && message.length > 0) {
-      send();
+  const validateAndSend = (token: string) => {
+    if (email && name.length > 0 && subject.length > 0 && message.length > 0) {
+      sendEmail(token);
     } else {
-      alert('Preencha todos os campos');
+      alert("Preencha todos os campos");
     }
   };
 
-  function isEmail(email: string) {
-    if (/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      return true;
-    }
-    return false;
-  }
+  const onSubmitWithReCAPTCHA = async (e: React.FormEvent<EventTarget>) => {
+    e.preventDefault();
+    const token = await recaptchaRef.current.executeAsync();
+    validateAndSend(token);
+  };
 
   return (
     <div className=" column is-offset-1 is-10">
-      <form onSubmit={(e) => sendEmail(e)}>
+      <form onSubmit={(e) => onSubmitWithReCAPTCHA(e)}>
         <TextBox name="Nome" value={name} setText={setName} maxLength={255} />
         <TextBox
           name="Email"
@@ -63,8 +64,13 @@ export const ContactForm = ({
           setMessage={setMessage}
         />
         <div className="columns column is-12 is-centered">
-          <ActionButton title="Enviar" onClick={sendEmail} />
+          <ActionButton title="Enviar" type={"submit"} />
         </div>
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          size="invisible"
+          sitekey={RECAPTCHA_KEY}
+        />
       </form>
     </div>
   );
