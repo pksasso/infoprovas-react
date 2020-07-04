@@ -141,8 +141,8 @@ export const SendExamTemplate = ({
     }
 
     if ("googleId" in response) {
-      setGoogleId(response.googleId);
-      Cookies.set("googleId", response.googleId, { expires: 7 });
+      setGoogleId(response.profileObj.email);
+      Cookies.set("googleId", response.profileObj.email, { expires: 7 });
     } else {
       setGoogleId("");
     }
